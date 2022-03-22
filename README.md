@@ -1,6 +1,6 @@
 # Convert video to jpg file by class name
 
-Convert video to jpg file by extracting unwanted images - OpenCV - yolov4 - 
+Convert video to jpg file by extracting unwanted images - OpenCV - yolov4 
 
 We download the Yolo Coco Dataset Model (cfg and weight files) from https://pjreddie.com/darknet/yolo/.
 
