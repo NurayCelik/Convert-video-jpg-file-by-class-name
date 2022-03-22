@@ -8,9 +8,7 @@ import numpy as np
 import os, shutil
 import datetime
      
-cap = cv2.VideoCapture("videolar/D61_20211222123725.mp4")
-
-
+cap = cv2.VideoCapture("videolar/D61_1.mp4")
 count = 0
 try:
     while True:
@@ -30,7 +28,16 @@ try:
        
         frame_blob = cv2.dnn.blobFromImage(frame, 0.00392, (608,608),(0, 0, 0),swapRB=True, crop=False)
     
-        labels = ["person"]
+        labels = ["person","bicycle","car","motorcycle","airplane","bus","train","truck","boat",
+                    "trafficlight","firehydrant","stopsign","parkingmeter","bench","bird","cat",
+                    "dog","horse","sheep","cow","elephant","bear","zebra","giraffe","backpack",
+                    "umbrella","handbag","tie","suitcase","frisbee","skis","snowboard","sportsball",
+                    "kite","baseballbat","baseballglove","skateboard","surfboard","tennisracket",
+                    "bottle","wineglass","cup","fork","knife","spoon","bowl","banana","apple",
+                    "sandwich","orange","broccoli","carrot","hotdog","pizza","donut","cake","chair",
+                    "sofa","pottedplant","bed","diningtable","toilet","tvmonitor","laptop","mouse",
+                    "remote","keyboard","cellphone","microwave","oven","toaster","sink","refrigerator",
+                    "book","clock","vase","scissors","teddybear","hairdrier","toothbrush"]
     
            
         colors = ["0,0,255","0,0,255","255,0,0","255,255,0","0,255,0"]
@@ -45,12 +52,9 @@ try:
         output_layer = [layers[layer[0]-1] for layer in model.getUnconnectedOutLayers()]
         
         model.setInput(frame_blob)
-        
-    
-        
+              
         detection_layers = model.forward(output_layer)
-    
-    
+        
         ############## NON-MAXIMUM SUPPRESSION - OPERATION 1 ###################
         
         ids_list = []
@@ -77,8 +81,7 @@ try:
                     start_x = int(box_center_x - (box_width/2))
                     start_y = int(box_center_y - (box_height/2))
                     
-                   
-                    
+                                  
                     ############## NON-MAXIMUM SUPPRESSION - OPERATION 2 ###################
                     
                     ids_list.append(predicted_id)
@@ -122,20 +125,21 @@ try:
             box_color = [int(each) for each in box_color]
                    
                     
-            label = "{}: {:.2f}%".format(label, confidence*100)
-            print("predicted object {}".format(label))
-             
-            #print(label)
-                    
-            cv2.rectangle(frame, (start_x,start_y),(end_x,end_y),box_color,2)
-            cv2.rectangle(frame, (start_x-1,start_y),(end_x+1,start_y-30),box_color,-1)
-            cv2.putText(frame,label,(start_x,start_y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
-            
-            cv2.imwrite("images/D61_20211222123725.mp4_%s_%#06d.jpg" %(dt,count), frame)   # save frame as JPEG file   
-            print('Read a new frame: ', success)
-            print('dt = ' + str(dt))
-            
-        count += 1
+            if label == "person":      
+                label = "{}: {:.2f}%".format(label, confidence*100)
+                print("predicted object {}".format(label))
+                 
+                #print(label)
+                        
+                cv2.rectangle(frame, (start_x,start_y),(end_x,end_y),box_color,2)
+                cv2.rectangle(frame, (start_x-1,start_y),(end_x+1,start_y-30),box_color,-1)
+                cv2.putText(frame,label,(start_x,start_y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
+                
+                cv2.imwrite("images/D61_1.mp4_%s_%#06d.jpg" %(dt,count), frame)   # save frame as JPEG file   
+                print('Read a new frame: ', success)
+                print('dt = ' + str(dt))
+                
+                count += 1
         
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
