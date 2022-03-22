@@ -127,9 +127,8 @@ try:
                     
             if label == "person":  
                 '''
-                Eğer jpg dosyalarında insan figürlerini dikdörtgen içerisinde etiketlemek istemiyorsanız yorum satırına çeviriebilirsiniz. Buradaki gibi 
-                '''
-                '''
+                # If you do not want to tag person figures in rectangles in jpg files, you can turn them into comments. Like here...
+                
                 label = "{}: {:.2f}%".format(label, confidence*100)
                 print("predicted object {}".format(label))
                  
