@@ -125,7 +125,11 @@ try:
             box_color = [int(each) for each in box_color]
                    
                     
-            if label == "person":      
+            if label == "person":  
+                '''
+                Eğer jpg dosyalarında insan figürlerini dikdörtgen içerisinde etiketlemek istemiyorsanız yorum satırına çeviriebilirsiniz. Buradaki gibi 
+                '''
+                '''
                 label = "{}: {:.2f}%".format(label, confidence*100)
                 print("predicted object {}".format(label))
                  
@@ -134,7 +138,8 @@ try:
                 cv2.rectangle(frame, (start_x,start_y),(end_x,end_y),box_color,2)
                 cv2.rectangle(frame, (start_x-1,start_y),(end_x+1,start_y-30),box_color,-1)
                 cv2.putText(frame,label,(start_x,start_y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
-                
+                '''
+               
                 cv2.imwrite("images/D61_1.mp4_%s_%#06d.jpg" %(dt,count), frame)   # save frame as JPEG file   
                 print('Read a new frame: ', success)
                 print('dt = ' + str(dt))
