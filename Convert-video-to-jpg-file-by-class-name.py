@@ -131,13 +131,17 @@ try:
                 print('Read a new frame: ', success)
                 print('dt = ' + str(dt))
                 count += 1
-               
+                    
+                '''
+                # If we don't want rectangles to be drawn in jpg files, we cancel it.
+                
                 label = "{}: {:.2f}%".format(label, confidence*100)
                 print("predicted object {}".format(label))
                         
                 cv2.rectangle(frame, (start_x,start_y),(end_x,end_y),box_color,2)
                 cv2.rectangle(frame, (start_x-1,start_y),(end_x+1,start_y-30),box_color,-1)
                 cv2.putText(frame,label,(start_x,start_y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
+                '''
           
         
         if cv2.waitKey(1) & 0xFF == ord("q"):
