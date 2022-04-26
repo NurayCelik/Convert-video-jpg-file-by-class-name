@@ -1,7 +1,3 @@
-"""
-Created on Tue Mar  8 13:37:13 2022
-@author: nuraycelik
-"""
 
 import cv2
 import numpy as np
