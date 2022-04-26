@@ -1,6 +1,6 @@
 """
 Created on Tue Mar  8 13:37:13 2022
-@author: eventgates
+@author: nuraycelik
 """
 
 import cv2
