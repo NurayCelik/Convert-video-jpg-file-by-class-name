@@ -11,4 +11,4 @@ Within these classes, we have converted the frames that we want to convert to jp
 Give jpg files videoname + datetime + incremental number.
 
 
-To separate the jpg files we created into folder -> sseparate_jpg_file_folder.py
+To separate the jpg files we created into folders -> separate_jpg_file_folder.py
