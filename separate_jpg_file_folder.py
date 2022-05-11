@@ -13,7 +13,7 @@ for f in os.listdir(folder_paths):
     old_path = folder_paths+str(f)
     if f.endswith('.jpg'):
             print(f)
-            if count %551 != 0: ### bölmek istediğimiz dosya sayısı
+            if count %551 != 0: ### the number of files we want to separate
               shutil.move(old_path, str(des))
             else:
               directCount +=1 
